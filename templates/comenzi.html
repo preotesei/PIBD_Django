@@ -2,22 +2,17 @@
 <html lang="ro">
 
 <head>
-
-    <title>Tabel Comenzi</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    {% load static %}
+    <title> Afișare Comenzi </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro" rel="stylesheet">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href={% static 'css/styles.css' %}>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" href={% static "clienti/assets/bootstrap/css/bootstrap.min.css" %}>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kalam&amp;display=swap">
+    <link rel="stylesheet" href={% static "clienti/assets/css/styles.css" %}>
 
 
     <script>
@@ -54,32 +49,39 @@
 
 <body>
 
-<div class="m-4 title">
-    Comenzi
-</div>
 
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm text-center">
-            <button type="submit" class="btn btn-primary btn-lg m-2 fix-button" data-bs-toggle="modal" data-bs-target="#comenzi_update_modal">
-                Modifică o comanda
-            </button>
+<section style="font-family: Armata, sans-serif;color: var(--bs-black-rgb);">
+    <div class="container-fluid"
+         style="background: #ffffff;margin-left: Auto;margin-right: Auto;padding-top: 30px;height: 200px;filter: grayscale(0%);">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" type="button" onclick="location.href='/';" value="Home"
+                        style="transform: translate(149px);filter: contrast(100%) invert(0%);">Pagina Principală
+                </button>
+            </div>
+            <div class="col">
+                <h2 class="d-xxl-flex"
+                    style="/*text-align: center;*/padding-top: 10px;padding-right: 34px;padding-left: 34px;font-family: Kalam, serif;transform: translate(-144px);">
+                    <br><strong>Tabel Comenzi</strong><br><br><br></h2>
+            </div>
         </div>
-
-        <div class="col-sm text-center menu">
-            <button class="btn btn-primary btn-lg m-2 fix-button" onclick="location.href='/';" value="Home">
-                Home
-            </button>
-        </div>
-
-        <div class="col-sm text-center">
-            <button type="submit" class="btn btn-primary btn-lg m-2 fix-button" data-bs-toggle="modal" data-bs-target="#comenzi_delete_modal">
-                Șterge o comandă
-            </button>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                        data-bs-target="#comenzi_update_modal" style="transform: translate(464px);height: 38px;">
+                    Modifică Comandă
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                        data-bs-target="#comenzi_delete_modal" style="transform: translate(261px);">
+                    Șterge Comanda
+                </button>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
 
 <!-- Comenzi Update Modal -->
 <div class="modal fade" id="comenzi_update_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -96,11 +98,12 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="form-floating">
-                                <select type="text" class="form-control" name="Select_comanda_Update" aria-label="Comanda"
+                                <select type="text" class="form-control" name="Select_comanda_Update"
+                                        aria-label="Comanda"
                                         id="Select_comanda_Update">
 
                                     {% for comanda in comenzi %}
-                                    <option value="{{  comanda.idcomanda }}"> {{ comanda.represent }}</option>
+                                        <option value="{{ comanda.idcomanda }}"> {{ comanda.represent }}</option>
                                     {% empty %}
                                         <option value="" selected>Nu există nicio comanda</option>
                                     {% endfor %}
@@ -111,14 +114,14 @@
                         </div>
 
 
-
                         <div class="col-12">
                             <div class="form-floating">
-                                <select type="text" class="form-control" name="STATUS_COMANDA_UPDATE" aria-label="STATUS_COMANDA" id="STATUS_COMANDA_UPDATE" required>
-                                    <option value="Anulată"> Anulată </option>
-                                    <option value="Livrată"> Livrată </option>
-                                    <option value="În așteptare"> În așteptare </option>
-                                    <option value="Returnata"> Returnată </option>
+                                <select type="text" class="form-control" name="STATUS_COMANDA_UPDATE"
+                                        aria-label="STATUS_COMANDA" id="STATUS_COMANDA_UPDATE" required>
+                                    <option value="Anulată"> Anulată</option>
+                                    <option value="Livrată"> Livrată</option>
+                                    <option value="În așteptare"> În așteptare</option>
+                                    <option value="Returnata"> Returnată</option>
                                 </select>
                                 <label for="STATUS_COMANDA_UPDATE">Status Comandă</label>
                             </div>
@@ -126,7 +129,8 @@
 
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="date" class="form-control" name="DATA_PLASARII_UPDATE" placeholder="DATA_PLASARII"
+                                <input type="date" class="form-control" name="DATA_PLASARII_UPDATE"
+                                       placeholder="DATA_PLASARII"
                                        aria-label="DATA_PLASARII" id="DATA_PLASARII_UPDATE"
                                        maxlength="50">
                                 <label for="DATA_PLASARII_UPDATE">Data plasării</label>
@@ -135,7 +139,8 @@
 
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="time" class="form-control" name="ORA_PLASARII_UPDATE" placeholder="ORA_PLASARII"
+                                <input type="time" class="form-control" name="ORA_PLASARII_UPDATE"
+                                       placeholder="ORA_PLASARII"
                                        aria-label="ORA_PLASARII" id="ORA_PLASARII_UPDATE" required>
                                 <label for="ORA_PLASARII_UPDATE">Ora plasării</label>
                             </div>
@@ -143,7 +148,8 @@
 
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="date" class="form-control" name="DATA_LIVRARII_UPDATE" placeholder="DATA_LIVRARII"
+                                <input type="date" class="form-control" name="DATA_LIVRARII_UPDATE"
+                                       placeholder="DATA_LIVRARII"
                                        aria-label="DATA_LIVRARII" id="DATA_LIVRARII_UPDATE"
                                        maxlength="50">
                                 <label for="DATA_LIVRARII_UPDATE">Data livrării</label>
@@ -152,7 +158,8 @@
 
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="time" class="form-control" name="ORA_LIVRARII_UPDATE" placeholder="ORA_LIVRARII"
+                                <input type="time" class="form-control" name="ORA_LIVRARII_UPDATE"
+                                       placeholder="ORA_LIVRARII"
                                        aria-label="ORA_LIVRARII" id="ORA_LIVRARII_UPDATE">
                                 <label for="ORA_LIVRARII_UPDATE">Ora livrării</label>
                             </div>
@@ -183,11 +190,12 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="form-floating">
-                                <select type="text" class="form-control" name="Select_comanda_Delete" aria-label="Select comanda"
+                                <select type="text" class="form-control" name="Select_comanda_Delete"
+                                        aria-label="Select comanda"
                                         id="Select_comanda_Delete">
 
                                     {% for comanda in comenzi %}
-                                    <option value="{{  comanda.idcomanda }}"> {{ comanda.represent }}</option>
+                                        <option value="{{ comanda.idcomanda }}"> {{ comanda.represent }}</option>
                                     {% empty %}
                                         <option value="" selected>Nu există nicio comanda</option>
                                     {% endfor %}
@@ -225,19 +233,19 @@
         <tbody>
         {% for comanda in comenzi %}
             <tr class="align-middle">
-                <td class="text-center">{{comanda.status_comanda}}</td>
-                <td class="text-center">{{comanda.data_plasarii}} {{comanda.ora_plasarii}}</td>
-                <td class="text-center">{{comanda.data_livrarii}} {{comanda.ora_livrarii}}</td>
-                <td class="text-center">{{comanda.client.nume}} {{comanda.client.prenume}}</td>
-                <td class="text-center">{{comanda.client.cnp}}</td>
-                <td class="text-center">{{comanda.client.telefon}}</td>
-                <td class="text-center">{{comanda.magazin.nume_magazin}}</td>
+                <td class="text-center">{{ comanda.status_comanda }}</td>
+                <td class="text-center">{{ comanda.data_plasarii }} {{ comanda.ora_plasarii }}</td>
+                <td class="text-center">{{ comanda.data_livrarii }} {{ comanda.ora_livrarii }}</td>
+                <td class="text-center">{{ comanda.client.nume }} {{ comanda.client.prenume }}</td>
+                <td class="text-center">{{ comanda.client.cnp }}</td>
+                <td class="text-center">{{ comanda.client.telefon }}</td>
+                <td class="text-center">{{ comanda.magazin.nume_magazin }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-
+<script src={% static "clienti/assets/bootstrap/js/bootstrap.min.js" %}></script>
 </body>
 
 </html>
