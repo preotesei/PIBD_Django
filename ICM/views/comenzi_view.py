@@ -1,6 +1,6 @@
+from dateutil.parser import parse
 from django.db import transaction
 from django.views.generic.base import TemplateView
-from dateutil.parser import parse
 
 from ICM.models import Comanda
 
@@ -37,13 +37,6 @@ class ComenziPageView(TemplateView):
 
             data_livrarii = parse(data_livrarii_string) if data_livrarii_string != '' else comanda.data_livrarii
             ora_livrarii = parse(ora_livrarii_string) if ora_livrarii_string != '' else comanda.data_livrarii
-
-
-            # data_livrarii = parse(data_livrarii) if data_livrarii != '' else comanda.data_livrarii
-            # ora_livrarii = parse(ora_livrarii) if ora_livrarii != '' else comanda.ora_livrarii
-
-            # data_livrarii = None if data_livrarii != '' else comanda.data_livrarii
-            # ora_livrarii = None if ora_livrarii != '' else comanda.ora_livrarii
 
             comanda = Comanda(idcomanda=comanda.idcomanda, client=client, magazin=magazin,
                               status_comanda=status_comanda, data_plasarii=data_plasarii,

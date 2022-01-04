@@ -1,5 +1,6 @@
 from django.db import models
 from django.db import transaction
+
 from ICM.models import Client, Magazin
 
 

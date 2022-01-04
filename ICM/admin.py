@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
-
 from ICM.models import *
+
+# Register your models here.
 
 admin.site.register(Client)
 admin.site.register(Magazin)

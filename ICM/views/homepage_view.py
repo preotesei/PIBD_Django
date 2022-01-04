@@ -1,6 +1,7 @@
+from dateutil.parser import parse
 from django.db import transaction
 from django.views.generic.base import TemplateView
-from dateutil.parser import parse
+
 from ICM.models import Client, Magazin, Comanda
 
 
